@@ -9,19 +9,32 @@
         </v-btn>
       </v-toolbar>
     </v-card>
-    <hr>
+    <v-spacer></v-spacer>
     <v-content>
       <v-container>
         <AddTodo
             @add-todo="addTodo"
         />
-        <select v-model="filter">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="not-completed">Not Completed</option>
-        </select>
+        <v-row align="center">
+          <v-col
+              class="d-flex"
+              cols="6"
+              sm="3"
+          >
+            <v-select
+                v-model="filter"
+                :items="items"
+                class="pa-4"
+                label="Tasks"
+                solo
+            >
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="not-completed">Not Completed</option>
+            </v-select>
+          </v-col>
+        </v-row>
       </v-container>
-      <hr>
       <v-container>
         <Loader v-if="loading"/>
         <TodoList
@@ -44,6 +57,7 @@ export default {
   name: 'app',
   data() {
     return {
+      items: ['all', 'completed', 'not-completed'],
       todos: [
         {id: 1, title: 'Buy bread', completed: false},
         {id: 2, title: 'Buy egs', completed: false},
