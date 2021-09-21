@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <h1>Todo list</h1>
-    <hr>
+  <v-app id="app">
 
     <router-view/>
-  </div>
+  </v-app>
 </template>
 
 

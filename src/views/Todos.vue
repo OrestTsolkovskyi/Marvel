@@ -1,25 +1,38 @@
 <template>
-  <div>
-    <h2>Todo list</h2>
-    <router-link to="/">Home</router-link>
+  <v-app>
+    <v-card>
+      <v-toolbar dense>
+        <v-toolbar-title>Todo list</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn>
+          <router-link to="/">Home</router-link>
+        </v-btn>
+      </v-toolbar>
+    </v-card>
     <hr>
-    <AddTodo
-        @add-todo="addTodo"
-    />
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not Completed</option>
-    </select>
-    <hr>
-    <Loader v-if="loading"/>
-    <TodoList
-        v-else-if="filteredTodos.length"
-        v-bind:todos="filteredTodos"
-        @remove-todo="removeTodo"
-    />
-    <p v-else>No todos!</p>
-  </div>
+    <v-content>
+      <v-container>
+        <AddTodo
+            @add-todo="addTodo"
+        />
+        <select v-model="filter">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="not-completed">Not Completed</option>
+        </select>
+      </v-container>
+      <hr>
+      <v-container>
+        <Loader v-if="loading"/>
+        <TodoList
+            v-else-if="filteredTodos.length"
+            v-bind:todos="filteredTodos"
+            @remove-todo="removeTodo"
+        />
+        <p v-else>No todos!</p>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>

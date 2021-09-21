@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-layout align-spave-around column justify-center>
     <ul>
       <TodoItem
           v-for="(todo, i) in todos"
@@ -9,7 +9,7 @@
           v-on:remove-todo="removeTodo"
       />
     </ul>
-  </div>
+  </v-layout>
 </template>
 
 <script>
@@ -29,9 +29,5 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+
 </style>

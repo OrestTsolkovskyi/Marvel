@@ -1,8 +1,18 @@
 <template>
-  <form @submit.prevent="onsubmit">
-    <input v-model="title" type="text">
-    <button type="submit">Create</button>
-  </form>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <v-input>
+          <v-text-field
+              label="New task"
+              @submit.prevent="onsubmit">
+            <input v-model="title" type="text">
+          </v-text-field>
+          <v-btn type="submit">Create</v-btn>
+        </v-input>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -35,8 +45,8 @@ form {
 }
 
 input {
-  width: 1000px;
   border-width: 2px;
+  border-color: darkgreen;
 }
 
 button {
