@@ -4,13 +4,12 @@
       <v-form @submit.prevent="onsubmit">
         <v-text-field
             v-model="title"
-            class="pa-1"
             label="New Task"
             single-line
             solo
             type="text"
         ></v-text-field>
-        <v-btn type="submit">Create</v-btn>
+        <v-btn class="green" type="submit">Create</v-btn>
       </v-form>
     </v-container>
   </v-layout>

@@ -1,5 +1,5 @@
 <template>
-  <v-layout align-spave-around column justify-center>
+  <v-layout align-space-around column>
     <ul>
       <TodoItem
           v-for="(todo, i) in todos"

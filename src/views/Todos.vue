@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-card>
-      <v-toolbar dense>
+      <v-toolbar class="light-green darken-4" dense>
         <v-toolbar-title>Todo list</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn>
+        <v-btn class="green">
           <router-link to="/">Home</router-link>
         </v-btn>
       </v-toolbar>
