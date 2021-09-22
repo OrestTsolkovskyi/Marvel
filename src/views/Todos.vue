@@ -34,8 +34,6 @@
             </v-select>
           </v-col>
         </v-row>
-      </v-container>
-      <v-container>
         <Loader v-if="loading"/>
         <TodoList
             v-else-if="filteredTodos.length"
