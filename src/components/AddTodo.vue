@@ -9,7 +9,12 @@
             solo
             type="text"
         ></v-text-field>
-        <v-btn class="green" type="submit">Create</v-btn>
+        <v-btn
+            class="purple darken-4"
+            large
+            type="submit"
+        >Create
+        </v-btn>
       </v-form>
     </v-container>
   </v-layout>

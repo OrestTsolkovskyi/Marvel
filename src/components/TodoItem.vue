@@ -7,8 +7,11 @@
       {{ todo.title | uppercase }}
       </span>
     </v-card-text>
-    <v-btn rounded small @click="$emit('remove-todo', todo.id)"> Del
-    </v-btn>
+    <v-card-actions>
+      <v-btn rounded small @click="$emit('remove-todo', todo.id)">
+        Del
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
