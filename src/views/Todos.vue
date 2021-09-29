@@ -1,11 +1,13 @@
 <template>
   <v-app>
     <v-card>
-      <v-toolbar class="purple darken-4" dense>
+      <v-toolbar class="purple darken-4" dark dense>
         <v-toolbar-title>Todo list</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn>
-          <router-link to="/">Home</router-link>
+        <v-btn
+            color="purple darken-4"
+        >
+          <router-link style="color: white" to="/">Home</router-link>
         </v-btn>
       </v-toolbar>
     </v-card>
@@ -38,6 +40,7 @@
         <TodoList
             v-else-if="filteredTodos.length"
             v-bind:todos="filteredTodos"
+            @editTodo="editTodo"
             @remove-todo="removeTodo"
         />
         <p v-else>No todos!</p>
@@ -93,6 +96,9 @@ export default {
     },
     addTodo(todo) {
       this.todos.push(todo)
+    },
+    editTodo() {
+      this.todos = this.todos.title()
     }
   },
   components: {
@@ -100,3 +106,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

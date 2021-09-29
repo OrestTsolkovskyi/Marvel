@@ -11,6 +11,7 @@
         ></v-text-field>
         <v-btn
             class="purple darken-4"
+            dark
             large
             type="submit"
         >Create
@@ -49,14 +50,4 @@ form {
   display: flex;
 }
 
-input {
-  width: 1000px;
-  border-width: 2px;
-}
-
-button {
-  color: darkgreen;
-  border-width: 2px;
-  border-radius: 10%;
-}
 </style>

@@ -1,8 +1,14 @@
 <template>
   <v-app>
     <v-card>
-      <v-toolbar class="purple darken-4" dense>
+      <v-toolbar class="purple darken-4" dark dense>
         <v-toolbar-title>Home page</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn
+            class="purple darken-4"
+        >
+          <router-link style="color: white" to="/todos">Todos</router-link>
+        </v-btn>
       </v-toolbar>
     </v-card>
     <hr>
@@ -20,11 +26,5 @@
         nobis quam quisquam repellat. Aperiam dolor in necessitatibus odit officiis omnis quaerat quidem quod
         reprehenderit, repudiandae.</p>
     </v-container>
-    <v-btn
-        class="purple"
-        rounded
-    >
-      <router-link to="/todos">Todos</router-link>
-    </v-btn>
   </v-app>
 </template>
