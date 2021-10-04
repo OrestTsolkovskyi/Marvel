@@ -1,34 +1,36 @@
 <template>
   <div ref="popup_wrapper" class="popup_wrapper">
-    <div class="v-popup">
-      <div class="v-popup__header">
-        <span>{{ popupTitle }}</span>
-        <span>
+    <v-card>
+      <div class="v-popup">
+        <div class="v-popup__header">
+          <span>{{ popupTitle }}</span>
+          <span>
         <v-icon
             @click="closePopup"
         >close
         </v-icon>
       </span>
-      </div>
-      <div class="v-popup__content">
-        <slot></slot>
-      </div>
-      <div class="v-popup__footer">
-        <v-btn
-            class="ma-2"
-            color="teal"
-            outlined
-            small
-            @click="editTodo"
-
-        >
-          <v-icon
+        </div>
+        <div class="v-popup__content">
+          <slot></slot>
+        </div>
+        <div class="v-popup__footer">
+          <v-btn
+              class="ma-2"
+              color="teal"
+              outlined
               small
-          >edit
-          </v-icon>
-        </v-btn>
+              type="submit"
+              @click="applyChanges"
+          >
+            <v-icon
+                small
+            >edit
+            </v-icon>
+          </v-btn>
+        </div>
       </div>
-    </div>
+    </v-card>
   </div>
 </template>
 
@@ -48,8 +50,8 @@ export default {
     closePopup() {
       this.$emit('closePopup')
     },
-    editTodo() {
-      this.$emit('editTodo')
+    applyChanges() {
+      this.$emit('applyChanges')
     }
   },
   mounted() {

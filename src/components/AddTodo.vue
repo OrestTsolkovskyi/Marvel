@@ -12,6 +12,7 @@
         <v-btn
             class="purple darken-4"
             dark
+            height="49px"
             large
             type="submit"
         >Create
@@ -48,6 +49,11 @@ export default {
 <style scoped>
 form {
   display: flex;
+  max-width: 1000px;
+
 }
 
+v-layout, v-container {
+  max-width: 1000px;
+}
 </style>

@@ -4,12 +4,14 @@
       <v-popup
           v-if="isShowTodoVisible"
           :popupTitle="todo.id"
+          @applyChanges="applyChanges"
           @closePopup="closePopup"
-          @editTodo="editTodo"
       >
-        {{ todo.title | uppercase }}
+        <input v-model="message" placeholder="edit todo"
+               @submit="applyChanges"
+        >
+        <h3>{{ message }}</h3>
       </v-popup>
-
       <v-chip
           class="mx-2 white--text"
           label
@@ -24,7 +26,6 @@
         <strong>{{ index + 1 }}</strong>
         {{ todo.title | uppercase }}
       </span>
-
       <v-btn
           class="ma-2"
           color="teal"
@@ -49,7 +50,6 @@
           delete_outline
         </v-icon>
       </v-btn>
-
     </v-card-text>
   </v-card>
 </template>
@@ -102,11 +102,10 @@ export default {
     closePopup() {
       this.isShowTodoVisible = false;
     },
-    editTodo() {
-      this.todos = this.todos.title();
+    applyChanges() {
+      this.applyChanges = true;
     }
   }
-
 }
 
 
@@ -122,7 +121,8 @@ input {
 }
 
 v-card-text {
-  display: flex;
- 
+  max-width: 1000px;
+
 }
+
 </style>

@@ -12,16 +12,17 @@
       </v-toolbar>
     </v-card>
     <v-spacer></v-spacer>
-    <v-content>
-      <v-container>
+    <v-container>
+      <v-content>
         <AddTodo
             @add-todo="addTodo"
         />
-        <v-row align="center">
+        <v-row>
           <v-col
-              class="d-flex"
+              class="d-flex "
               cols="6"
               sm="3"
+
           >
             <v-select
                 v-model="filter"
@@ -40,12 +41,11 @@
         <TodoList
             v-else-if="filteredTodos.length"
             v-bind:todos="filteredTodos"
-            @editTodo="editTodo"
             @remove-todo="removeTodo"
         />
         <p v-else>No todos!</p>
-      </v-container>
-    </v-content>
+      </v-content>
+    </v-container>
   </v-app>
 </template>
 
@@ -97,9 +97,6 @@ export default {
     addTodo(todo) {
       this.todos.push(todo)
     },
-    editTodo() {
-      this.todos = this.todos.title()
-    }
   },
   components: {
     TodoList, AddTodo, Loader
@@ -107,6 +104,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
