@@ -1,17 +1,53 @@
 <template>
-  <v-card class="my-5" max-width="1000">
-    <v-card-text>
+  <v-card
+      class="my-2"
+      color="rgba(255, 255, 255, 0.3)"
+      elevation="5"
+      flat
+      max-width="1000"
+  >
+    <v-card-text style="align-items: center; display: flex;">
       <v-popup
           v-if="isShowTodoVisible"
-          :popupTitle="todo.id"
-          @applyChanges="applyChanges"
+          :popupTitle="todo.title"
+          @cancelChanges="cancelChanges"
           @closePopup="closePopup"
       >
-        <input v-model="message" placeholder="edit todo"
-               @submit="applyChanges"
+        <v-text-field
+            v-model="newTitle"
+            label="Edit task"
+            type="text"
         >
-        <h3>{{ message }}</h3>
+        </v-text-field>
+        <template #actions>
+          <v-btn
+              color="#bcffda"
+              elevation="5"
+              small
+              @click="cancelChanges"
+          >
+            Cancel
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn
+              class="ma-2"
+              color="#bcffda"
+              elevation="5"
+              small
+              type="submit"
+              @click="applyChanges"
+          >
+            <v-icon
+                color="#27B769"
+                small
+            >edit
+            </v-icon>
+          </v-btn>
+        </template>
       </v-popup>
+      <input
+          type="checkbox"
+          v-on:change="todo.completed=!todo.completed"/>
       <v-chip
           class="mx-2 white--text"
           label
@@ -20,48 +56,40 @@
         {{ getStatus }}
       </v-chip>
 
-      <input type="checkbox" v-on:change="todo.completed=!todo.completed">
       <span
           v-bind:class="{done: todo.completed}">
         <strong>{{ index + 1 }}</strong>
         {{ todo.title | uppercase }}
       </span>
-      <v-btn
+      <v-spacer></v-spacer>
+      <v-icon
           class="ma-2"
-          color="teal"
-          outlined
-          x-small
-          @click="showPopup"
-      >
-        <v-icon
-            small
-        >edit
-        </v-icon>
-      </v-btn>
-
-      <v-btn
-          color="purple"
-          fab
-          outlined
-          rounded
+          color="#27B769"
           small
+          style="align-self: center; "
+          @click="showPopup"
+      >edit
+      </v-icon>
+
+      <v-icon
+          color="red darken"
+          style="align-self: center;"
           @click="$emit('remove-todo', todo.id)">
-        <v-icon>
-          delete_outline
-        </v-icon>
-      </v-btn>
+        delete
+      </v-icon>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 
-import vPopup from "./popup/v-popup";
+import vPopup from "./popup/popup";
 
 export default {
   components: {
     vPopup
-  },
+  }
+  ,
   props:
       {
         todo: {
@@ -70,17 +98,21 @@ export default {
         }
         ,
         index: Number
-      },
+      }
+  ,
   filters: {
     uppercase(value) {
       return value.toUpperCase()
     }
-  },
+  }
+  ,
   data() {
     return {
-      isShowTodoVisible: false
+      newTitle: this.todo.title,
+      isShowTodoVisible: false,
     }
-  },
+  }
+  ,
   computed: {
     getStatus() {
       if (this.todo.completed === true) {
@@ -88,12 +120,14 @@ export default {
       } else {
         return 'Waiting';
       }
-    },
+    }
+    ,
 
     getStatusColor() {
-      return this.todo.completed ? 'blue' : 'red';
+      return this.todo.completed ? '#27B769' : 'red darken';
     }
-  },
+  }
+  ,
   methods: {
     showPopup() {
       this.isShowTodoVisible = true;
@@ -102,12 +136,17 @@ export default {
     closePopup() {
       this.isShowTodoVisible = false;
     },
+
+    cancelChanges() {
+      this.newTitle = this.todo.title;
+      this.closePopup();
+    },
     applyChanges() {
-      this.applyChanges = true;
+      this.todo.title = this.newTitle;
+      this.closePopup();
     }
   }
 }
-
 
 </script>
 
@@ -117,12 +156,6 @@ export default {
 }
 
 input {
-  margin-right: 1rem;
+  margin-right: 6px;
 }
-
-v-card-text {
-  max-width: 1000px;
-
-}
-
 </style>

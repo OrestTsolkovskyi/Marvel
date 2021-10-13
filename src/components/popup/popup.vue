@@ -4,30 +4,15 @@
       <div class="v-popup">
         <div class="v-popup__header">
           <span>{{ popupTitle }}</span>
-          <span>
-        <v-icon
-            @click="closePopup"
-        >close
-        </v-icon>
-      </span>
+          <v-icon @click="closePopup">
+            close
+          </v-icon>
         </div>
         <div class="v-popup__content">
           <slot></slot>
         </div>
         <div class="v-popup__footer">
-          <v-btn
-              class="ma-2"
-              color="teal"
-              outlined
-              small
-              type="submit"
-              @click="applyChanges"
-          >
-            <v-icon
-                small
-            >edit
-            </v-icon>
-          </v-btn>
+          <slot name="actions"></slot>
         </div>
       </div>
     </v-card>
@@ -40,18 +25,16 @@ export default {
   props: {
     popupTitle: {
       type: String,
-      default: 'Popup id'
+      default: 'Popup title'
     }
-  },
-  data() {
-    return {}
   },
   methods: {
     closePopup() {
       this.$emit('closePopup')
     },
-    applyChanges() {
-      this.$emit('applyChanges')
+
+    cancelChanges() {
+      this.$emit('cancelChanges')
     }
   },
   mounted() {
@@ -68,7 +51,7 @@ export default {
 
 <style scoped>
 .popup_wrapper {
-  background: lightgrey;
+  background: rgba(188, 255, 218, 0.6);;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,10 +65,10 @@ export default {
 .v-popup {
   padding: 15px;
   position: fixed;
-  top: 200px;
+  top: 100px;
   width: 400px;
   box-shadow: 0 0 15px 0 black;
-  background-color: white;
+  background-color: #bcffda;
 }
 
 .v-popup__header, .v-popup__footer {

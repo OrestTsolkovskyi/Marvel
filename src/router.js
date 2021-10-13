@@ -9,10 +9,12 @@ export default new Router({
     routes: [
         {
             path: '/',
+            meta: {title: 'Home page'},
             component: Home
         },
         {
             path: '/todos',
+            meta: {title: 'Todo list'},
             component: () => import('./views/Todos.vue')
         }
     ]

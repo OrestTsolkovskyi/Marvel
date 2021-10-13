@@ -1,71 +1,55 @@
 <template>
-  <v-app>
-    <v-card>
-      <v-toolbar class="purple darken-4" dark dense>
-        <v-toolbar-title>Todo list</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn
-            color="purple darken-4"
-        >
-          <router-link style="color: white" to="/">Home</router-link>
-        </v-btn>
-      </v-toolbar>
-    </v-card>
-    <v-spacer></v-spacer>
-    <v-container>
-      <v-content>
-        <AddTodo
-            @add-todo="addTodo"
-        />
-        <v-row>
-          <v-col
-              class="d-flex "
-              cols="6"
-              sm="3"
+  <v-container fluid style="width: 1000px">
+    <AddTodo
+        @add-todo="addTodo"
+    />
 
-          >
-            <v-select
-                v-model="filter"
-                :items="items"
-                class="pa-4"
-                label="Tasks"
-                solo
-            >
-              <option value="all">All</option>
-              <option value="completed">Completed</option>
-              <option value="not-completed">Not Completed</option>
-            </v-select>
-          </v-col>
-        </v-row>
-        <Loader v-if="loading"/>
-        <TodoList
-            v-else-if="filteredTodos.length"
-            v-bind:todos="filteredTodos"
-            @remove-todo="removeTodo"
-        />
-        <p v-else>No todos!</p>
-      </v-content>
-    </v-container>
-  </v-app>
+    <v-tabs
+        v-model="itemIndex"
+        background-color="rgba(255, 255, 255, 0)"
+        class="mb-4 d-flex"
+        color="#27B769"
+        height="40px"
+    >
+      <v-tab
+          v-for="item in items"
+          :key="item"
+          class="text-none px-5"
+      >
+        {{ item }}
+      </v-tab>
+    </v-tabs>
+
+
+    <Loader v-if="loading"/>
+    <TodoList
+        v-else-if="filteredTodos.length"
+        v-bind:todos="filteredTodos"
+        @remove-todo="removeTodo"
+    />
+    <p v-else>NO TASKS</p>
+  </v-container>
 </template>
 
 <script>
 import TodoList from '@/components/TodoList.vue'
-import AddTodo from '@/components/AddTodo.vue'
+import AddTodo from '@/views/AddTodo.vue'
 import Loader from '@/components/Loader.vue'
 
 export default {
   name: 'app',
   data() {
     return {
+      itemIndex: null,
       items: ['all', 'completed', 'not-completed'],
       todos: [
         {id: 1, title: 'Buy bread', completed: false},
         {id: 2, title: 'Buy egs', completed: false},
-        {id: 3, title: 'Buy mayo', completed: false}
+        {id: 3, title: 'Buy mayo', completed: false},
+        {id: 4, title: 'Buy potato', completed: false},
+        {id: 5, title: 'Buy cheese', completed: false},
       ],
       loading: true,
-      filter: 'all'
     }
   },
   mounted() {
@@ -75,6 +59,9 @@ export default {
   },
 
   computed: {
+    filter() {
+      return this.items[this.itemIndex]
+    },
     filteredTodos() {
       if (this.filter === 'all') {
         return this.todos
