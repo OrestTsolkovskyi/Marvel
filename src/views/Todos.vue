@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="width: 1000px; padding-top: 50px">
+  <v-container class="px-0" fluid style="width: 1000px; padding-top: 50px">
     <v-tabs
         v-model="itemIndex"
         background-color="rgba(255, 255, 255, 0)"

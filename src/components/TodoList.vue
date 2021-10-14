@@ -1,6 +1,6 @@
 <template>
   <v-layout align-space-around column style="width: 1000px">
-    <ul class="pa-0 ">
+    <ul class="pa-0" style="justify-content: center">
       <TodoItem
           v-for="(todo, i) in todos"
           :key="todo.id"

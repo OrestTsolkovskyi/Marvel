@@ -39,14 +39,13 @@
           >
             <v-icon
                 color="#27B769"
-                small
+                size="20"
             >edit
             </v-icon>
           </v-btn>
         </template>
       </v-popup>
       <input
-
           type="checkbox"
           v-on:change="todo.completed=!todo.completed"/>
       <v-chip
@@ -72,13 +71,46 @@
           @click="showPopup"
       >edit
       </v-icon>
-      <v-icon
-          color="red darken"
-          size="25"
-          style="align-self: center;"
-          @click="$emit('remove-todo', todo.id)">
-        delete
-      </v-icon>
+      <div class="text-center">
+        <v-dialog
+            v-model="dialog"
+            width="415"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+                color="red darken"
+                size="25"
+                style="align-self: center;"
+                v-bind="attrs"
+                v-on="on"
+            >
+              delete
+            </v-icon>
+          </template>
+          <v-card>
+            <v-card-title style="justify-content: center; color: #27B769">
+              Deleting confirmation
+            </v-card-title>
+            <v-card-text class="text-h6" style="text-align: center">
+              Are you sure, you want delete this task?
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                  class="text-none"
+                  color="red darken"
+                  dark
+                  style="align-self: center;"
+                  width="100px"
+                  @click="$emit('remove-todo', todo.id)"
+              >
+                Apply
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -110,6 +142,7 @@ export default {
   ,
   data() {
     return {
+      dialog: false,
       newTitle: this.todo.title,
       isShowTodoVisible: false,
     }
