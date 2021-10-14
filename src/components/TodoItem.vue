@@ -46,33 +46,35 @@
         </template>
       </v-popup>
       <input
+
           type="checkbox"
           v-on:change="todo.completed=!todo.completed"/>
       <v-chip
           class="mx-2 white--text"
-          label
+          style="height: 25px; width: 82px; justify-content: center"
           v-bind:color="getStatusColor"
       >
         {{ getStatus }}
       </v-chip>
 
       <span
-          v-bind:class="{done: todo.completed}">
-        <strong>{{ index + 1 }}</strong>
+          class="px-10"
+          v-bind:class="{done: todo.completed}"
+      >
         {{ todo.title | uppercase }}
       </span>
       <v-spacer></v-spacer>
       <v-icon
-          class="ma-2"
+          class="ma-2 px-2"
           color="#27B769"
-          small
-          style="align-self: center; "
+          size="23"
+          style="align-self: center;"
           @click="showPopup"
       >edit
       </v-icon>
-
       <v-icon
           color="red darken"
+          size="25"
           style="align-self: center;"
           @click="$emit('remove-todo', todo.id)">
         delete
@@ -156,6 +158,7 @@ export default {
 }
 
 input {
-  margin-right: 6px;
+  margin-right: 15px;
+
 }
 </style>

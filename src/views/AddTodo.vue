@@ -1,5 +1,5 @@
 <template>
-  <v-form style="width: 1000px; height:100px" @submit.prevent="onsubmit">
+  <v-form style="width: 1000px; height:50px" @submit.prevent="onsubmit">
     <v-text-field
         v-model="title"
         background-color="rgba(255, 255, 255, 0.4)"
@@ -9,7 +9,7 @@
         type="text"
     ></v-text-field>
     <v-btn
-        class="text-none"
+        class="text-none px-6"
         color="#27B769"
         dark
         elevation="5"

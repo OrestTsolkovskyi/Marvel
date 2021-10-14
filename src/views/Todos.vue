@@ -1,9 +1,5 @@
 <template>
-  <v-container fluid style="width: 1000px">
-    <AddTodo
-        @add-todo="addTodo"
-    />
-
+  <v-container fluid style="width: 1000px; padding-top: 50px">
     <v-tabs
         v-model="itemIndex"
         background-color="rgba(255, 255, 255, 0)"
@@ -19,8 +15,9 @@
         {{ item }}
       </v-tab>
     </v-tabs>
-
-
+    <AddTodo
+        @add-todo="addTodo"
+    />
     <Loader v-if="loading"/>
     <TodoList
         v-else-if="filteredTodos.length"
@@ -41,7 +38,7 @@ export default {
   data() {
     return {
       itemIndex: null,
-      items: ['all', 'completed', 'not-completed'],
+      items: ['all', 'active', 'completed'],
       todos: [
         {id: 1, title: 'Buy bread', completed: false},
         {id: 2, title: 'Buy egs', completed: false},
@@ -71,7 +68,7 @@ export default {
         return this.todos.filter(t => t.completed)
       }
 
-      if (this.filter === 'not-completed') {
+      if (this.filter === 'active') {
         return this.todos.filter(t => !t.completed)
       }
       return []
